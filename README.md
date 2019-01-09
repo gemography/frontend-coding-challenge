@@ -13,7 +13,7 @@ You'll be fetching the sorted JSON data directly from the Github API (Github API
   * Number of stars for the repo. 
   * Number of issues for the repo.
   * Username and avatar of the owner. 
-  * As a User I should be able to keep scrolling and new results should appear (pagination).
+* As a User I should be able to keep scrolling and new results should appear (pagination).
 
 ## Things to keep in mind 🚨
 * Features are less important than code quality. Put more focus on code quality and less on speed and number of features implemented. 
@@ -38,7 +38,7 @@ You can read more about the Github API over [here](https://developer.github.com/
 ).
 
 ## Mockups
-![alt text](https://raw.githubusercontent.com/hiddenfounders/mobile-coding-challenge/master/mockup.png)
+![alt text](https://raw.githubusercontent.com/hiddenfounders/frontend-coding-challenge/master/mockup.png)
 
 ## Technologies to use 
 Choose whatever front-end technology you're most familiar with. But here's some of the technologies our teams are familiar with:
