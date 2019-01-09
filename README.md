@@ -38,7 +38,7 @@ You can read more about the Github API over [here](https://developer.github.com/
 ).
 
 ## Mockups
-![alt text](https://raw.githubusercontent.com/hiddenfounders/mobile-coding-challenge/master/mockup.png)
+![alt text](https://raw.githubusercontent.com/hiddenfounders/frontend-coding-challenge/master/mockup.png)
 
 ## Technologies to use 
 Choose whatever front-end technology you're most familiar with. But here's some of the technologies our teams are familiar with:
