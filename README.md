@@ -1,4 +1,4 @@
-# Frontend Coding Challenge
+# Front-end Coding Challenge
 
 ## Idea of the App 
 The task is to implement a small webapp that will list the most starred Github repos that were created in the last 30 days. 
@@ -39,6 +39,10 @@ You can read more about the Github API over [here](https://developer.github.com/
 
 ## Mockups
 ![alt text](https://raw.githubusercontent.com/hiddenfounders/frontend-coding-challenge/master/mockup.png)
+
+Here's what each element represents :
+
+![alt text](https://raw.githubusercontent.com/hiddenfounders/frontend-coding-challenge/master/row_explained.png)
 
 ## Technologies to use 
 Choose whatever front-end technology you're most familiar with. But here's some of the technologies our teams are familiar with:
