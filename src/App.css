@@ -1,9 +1,5 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
+  text-align: left;
 }
 
 .App-header {
@@ -17,6 +13,49 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+
+
+h1{
+  margin-top: 0px;
+}
+
+.row {
+  background-color: gray;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.column {
+  flex: 1;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.stars{
+  background-color: white;
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.issues{
+  background-color: white;
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.yellow{
+  color: #b08f26;
 }
