@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Repository.css';
 
-function Repository({item}){
-    const {name, owner, description, stargazers_count, open_issues_count} = item;
+function Repository({repo}){
+    const {name, owner, description, stargazers_count, open_issues_count} = repo;
     return (
       <div className="repo">
           <div className="owner-avatar">
