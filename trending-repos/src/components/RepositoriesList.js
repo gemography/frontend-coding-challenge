@@ -5,7 +5,7 @@ import Repository from './Repository';
 function RepositoriesList({repos}) {
     return(
         <div>
-            {repos.map(repo => <Repository repo={repo}/>)}
+            {repos.map(repo => <Repository key={repo.id} repo={repo}/>)}
         </div>
     );
 }
