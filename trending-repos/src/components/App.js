@@ -1,50 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import githubApi from '../apis/github';
 import RepositoriesList from './RepositoriesList';
+import Spinner from './Spinner';
+import { calcAndFormatDate } from '../utils/calcAndFormatDate';
 
-class App extends React.Component{
-  state = {
-    repos: []
+function App() {
+
+  const [repos, setRepos] = useState([]);
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(true);
+
+  useEffect(() => {
+    fetchTrendingRepos();
+  }, []);
+
+  useEffect(() => {
+    fetchTrendingRepos();
+  }, [page]);
+
+  async function fetchTrendingRepos(){
+    const response = await githubApi.get(`/search/repositories?q=created:>${calcAndFormatDate()}&sort=stars&order=desc&page=${page}`);
+
+    setRepos([...repos, ...response.data.items]);
+    setIsFetching(false); 
   }
 
-  calcAndFormatDate(){
-    const date = new Date();
-    date.setDate(date.getDate() - 30);
-
-    const year = date.getFullYear();
-    const month = date.getMonth()+1;
-    const day = date.getDate();
-
-    if (day < 10) {
-      day = '0' + day;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-    
-    return `${year}-${month}-${day}`;
+  function loadMore() {
+    setIsFetching(true);
+    setPage(page + 1);
+    console.log(page);
   }
 
-  async fetchTrendingRepos(){
-    const response = await githubApi.get(`/search/repositories?q=created:>${this.calcAndFormatDate()}&sort=stars&order=desc`);
-
-    this.setState({
-      repos: response.data.items
-    });
-  }
-
-  componentDidMount(){
-    this.fetchTrendingRepos();
-  }
-
-  render(){
-    return (
-      <div>
-        <RepositoriesList repos={this.state.repos} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <RepositoriesList repos={repos} loadMore={loadMore}/>
+      {isFetching && <Spinner />}
+    </div>
+  );
+  
 }
 
 export default App;
