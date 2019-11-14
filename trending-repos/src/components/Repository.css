@@ -1,0 +1,31 @@
+.repo {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin: 1vh;
+}
+
+.owner-avatar{
+    width: 150px;
+    padding: 2vw;
+    text-align: center;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+.repo-info{
+    flex-grow: 1;
+    padding: 2vw;
+}
+
+.repo-stats{
+    display: flex;
+    flex-direction: row;
+}
+
+.repo-stats p {
+    margin-right: 1vw;
+}
