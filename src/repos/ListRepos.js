@@ -1,60 +1,43 @@
 import React, { Component } from 'react';
 import Repo from './Repo';
+import GitHubService from './service/GitHubService';
 
 class ListRepos extends Component {
-    items = [
-        {
-            "id":1,
-            "name": "copypaster",
-            "description": "Let's make copy/paste-able web forms with eReceipts the standard",
-            "stargazers_count": 11,
-            "open_issues_count": 1,
-            "pushed_at": "2019-11-13T03:15:40Z",
-            "owner": {
-                "login": "treenotation",
-                "avatar_url": "https://avatars0.githubusercontent.com/u/51207659?v=4"
-            },
-        },
-        {
-            "id":2,
-            "name": "copypaster",
-            "description": "Let's make copy/paste-able web forms with eReceipts the standard",
-            "stargazers_count": 11,
-            "open_issues_count": 1,
-            "pushed_at": "2019-11-13T03:15:40Z",
-            "owner": {
-                "login": "treenotation",
-                "avatar_url": "https://avatars0.githubusercontent.com/u/51207659?v=4"
-            },
-        }, {
-            "id":3,
-            "name": "copypaster",
-            "description": "Let's make copy/paste-able web forms with eReceipts the standard",
-            "stargazers_count": 11,
-            "open_issues_count": 1,
-            "pushed_at": "2019-11-13T03:15:40Z",
-            "owner": {
-                "login": "treenotation",
-                "avatar_url": "https://avatars0.githubusercontent.com/u/51207659?v=4"
-            },
-        }, {
-            "id":4,
-            "name": "copypaster",
-            "description": "Let's make copy/paste-able web forms with eReceipts the standard",
-            "stargazers_count": 11,
-            "open_issues_count": 1,
-            "pushed_at": "2019-11-13T03:15:40Z",
-            "owner": {
-                "login": "treenotation",
-                "avatar_url": "https://avatars0.githubusercontent.com/u/51207659?v=4"
-            },
-        }];
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: {},
+            isLoaded: false,
+        }
+    }
+    componentDidMount() {
+        GitHubService.getAllRepos()
+            .then(res => { return res.data; })
+            .then(json => {
+                console.log(json.items);
+                this.setState({
+                    isLoaded: true,
+                    items: json.items,
+                })
+            }).catch(() => {
+                alert("cannot load the list of repositories");
+            });
+    }
     render() {
-        return (
-            this.items.map((current) => 
-                <Repo key={current.id} repo={current} />
-            )
-        );
+        const { isLoaded, items } = this.state;
+        if (!isLoaded) {
+
+            return <div>Loading...</div>
+
+        }
+        else {
+            return (
+                items.map((current) =>
+                    <Repo key={current.id} repo={current} />
+                )
+            );
+        }
     }
 }
 

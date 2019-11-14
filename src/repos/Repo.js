@@ -13,8 +13,11 @@ function Repo({ repo }) {
                 <h1>{repo.name}</h1>
                 <p>{repo.description}</p>
                 <div>
-                    <span className="stars"><FontAwesomeIcon className="yellow" icon={faStar} /> Stars: {repo.stargazers_count}</span>
-                    <span className="issues">Issues: {repo.open_issues_count}</span>
+                    <span className="stars">
+                        <FontAwesomeIcon className="yellow" icon={faStar} /> 
+                        Stars: {format_number(repo.stargazers_count)}
+                    </span>
+                    <span className="issues">Issues: {format_number(repo.open_issues_count)}</span>
     <span className="date">Submitted {diff_in_days(repo.pushed_at)} days ago by {repo.owner.login}</span>
                 </div>
 
@@ -22,7 +25,9 @@ function Repo({ repo }) {
         </div>
     );
 }
-
+function format_number(number){
+    return number <= 1000? number : (number/1000)+"k";
+}
 function diff_in_days(date) {
     const date1 = new Date(date);
     const date2 = new Date();
