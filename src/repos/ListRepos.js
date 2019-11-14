@@ -1,44 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 import Repo from './Repo';
 import GitHubService from './service/GitHubService';
 
-class ListRepos extends Component {
+let page = 0;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: {},
-            isLoaded: false,
-        }
+function ListRepos() {
+
+    const [items, setItems] = useState([]);
+    const [initialized, setInitialized] = useState(false);
+    const [totalCount, setTotalCount] = useState(0);
+
+    const getNewRepos = async () => {
+        page++;
+        const response = await GitHubService.getAllRepos(page);
+        console.log(response);
+        setItems(items.concat(response.data.items));
+        setTotalCount(response.data.total_count);
+        setInitialized(true);
     }
-    componentDidMount() {
-        GitHubService.getAllRepos()
-            .then(res => { return res.data; })
-            .then(json => {
-                console.log(json.items);
-                this.setState({
-                    isLoaded: true,
-                    items: json.items,
-                })
-            }).catch(() => {
-                alert("cannot load the list of repositories");
-            });
-    }
-    render() {
-        const { isLoaded, items } = this.state;
-        if (!isLoaded) {
-
-            return <div>Loading...</div>
-
+    useEffect(() => {
+        if (!initialized) {
+            getNewRepos();
         }
-        else {
-            return (
-                items.map((current) =>
+    });
+
+    return (
+            <InfiniteScroll
+                pageStart={page}
+                loadMore={getNewRepos}
+                hasMore={totalCount > items.length}
+            >
+                {items.map((current) =>
                     <Repo key={current.id} repo={current} />
-                )
-            );
-        }
-    }
+                )}
+            </InfiniteScroll>
+    );
+
+    
 }
 
 export default ListRepos;
