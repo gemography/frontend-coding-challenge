@@ -1,44 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import githubApi from '../apis/github';
 import RepositoriesList from './RepositoriesList';
-import Spinner from './Spinner';
 import { calcAndFormatDate } from '../utils/calcAndFormatDate';
 
-function App() {
+class App extends React.Component {
 
-  const [repos, setRepos] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isFetching, setIsFetching] = useState(true);
+  state = {
+    repos: [],
+    page: 1,
+    isFetching: false
+  }
 
-  useEffect(() => {
-    fetchTrendingRepos();
-  }, []);
+  componentDidMount(){
+    this.fetchTrendingRepos(this.state.page);
+  }
 
-  useEffect(() => {
-    fetchTrendingRepos();
-  }, [page]);
+  componentDidUpdate(prevProp, prevState){
+    if(prevState.page != this.state.page)
+      this.fetchTrendingRepos(this.state.page);
+  }
 
-  async function fetchTrendingRepos(){
+  async fetchTrendingRepos(page){
     const response = await githubApi.get(`/search/repositories?q=created:>${calcAndFormatDate()}&sort=stars&order=desc&page=${page}`);
 
-    setRepos([...repos, ...response.data.items]);
-    setIsFetching(false); 
+    this.setState({
+      isFetching: false,
+      repos: [...this.state.repos, ...response.data.items]
+    }) 
   }
 
-  function loadMore() {
-    setIsFetching(true);
-    setPage(page + 1);
-    console.log(page);
+  loadMore = () => {
+    if(this.state.isFetching === true) return;
+
+    this.setState({
+      isFetching: true,
+      page: this.state.page + 1
+    })
   }
 
-  return (
-    <div>
-      <RepositoriesList repos={repos} loadMore={loadMore}/>
-      {isFetching && <Spinner />}
-    </div>
-  );
-  
+  render(){
+    return (
+      <div>
+        <RepositoriesList repos={this.state.repos} loadMore={this.loadMore}/>
+        {this.state.isFetching && <div>Loading...</div>}
+      </div>
+    );
+  }  
 }
 
 export default App;

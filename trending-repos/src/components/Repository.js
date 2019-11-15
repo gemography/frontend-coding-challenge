@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Repository.css';
+import '../styles/Repository.css';
 
 function Repository({repo}){
     const {name, owner, description, stargazers_count, open_issues_count} = repo;

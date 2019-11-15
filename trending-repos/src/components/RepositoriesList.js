@@ -10,7 +10,7 @@ function RepositoriesList({repos, loadMore}) {
     }, []);
 
     function handleScroll() {
-        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+        if ((window.innerHeight + document.documentElement.scrollTop) !== document.documentElement.offsetHeight) return;
         loadMore();
       }
 
