@@ -2,7 +2,7 @@ import React from 'react';
 
 import githubApi from '../apis/github';
 import RepositoriesList from './RepositoriesList';
-import { calcAndFormatDate } from '../utils/calcAndFormatDate';
+import { date30DaysAgo } from '../utils/dateManipulations';
 
 class App extends React.Component {
 
@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   async fetchTrendingRepos(page){
-    const response = await githubApi.get(`/search/repositories?q=created:>${calcAndFormatDate()}&sort=stars&order=desc&page=${page}`);
+    const response = await githubApi.get(`/search/repositories?q=created:>${date30DaysAgo()}&sort=stars&order=desc&page=${page}`);
 
     this.setState({
       isFetching: false,
