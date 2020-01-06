@@ -49,3 +49,11 @@ Choose whatever front-end technology you're most familiar with. But here's some 
 * React
 * Vue
 * Angular
+
+## How to submit the challenge solution? 
+Now after you finished your app and we assume that you already pushed it to your GitHub account, if so please follow the instructions below:
+1- Set Repo privicy:
+  * If the repo is sensitive and you're not comfortable sharing it publicly please give access to this username: [salimbraksa](https://github.com/salimbraksa).
+  * If it's public go to the next step
+2- Send the repo's link to this email:`careers@unitedremote.com`.
+
