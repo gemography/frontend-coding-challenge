@@ -56,4 +56,4 @@ Now after you finished your app and we assume that you already pushed it to your
 1. Set the Repo privacy:
    - If the repo is sensitive and you're not comfortable sharing it publicly please give access to this username: [salimbraksa](https://github.com/salimbraksa).
    - If it's public go to the next step
-2. Send the repo's link to this email:`careers@unitedremote.com`.
+2. Send the repo's link to this email: `careers@gemography.com`.
