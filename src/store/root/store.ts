@@ -1,8 +1,9 @@
 import React from "react";
-
+import { GithubRepoStore, IGithubRepoStore } from "../githubRepo/store";
 
 export interface IRootStore {
- 
+    githubRepoStore: IGithubRepoStore;
+    // other stores should come here 
 }
 
 export function RootStore() {
@@ -16,8 +17,12 @@ export function RootStore() {
       };
     };
   
+    const _githubRepoStore = lazyStore(GithubRepoStore);
+
     const store: IRootStore = {
-     
+      get githubRepoStore() {
+        return _githubRepoStore();
+      }
     };
     return store;
   }
