@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.0
+
+executors:
+  node-exe:
+   docker:
+    - image: circleci/node:12  
+
+commands:
+  build:
+   steps:
+    - checkout
+    - node/install-packages
+    - run: node --version 
+    - node/run:
+          npm-run: build      
+
+jobs:
+ build-test:
+   executor: node-exe
+   environment:
+      CI: "false"
+   steps:
+    - build
+    - node/test
+
+workflows:
+  version: 2.1
+  test_and_release:
+   jobs:
+    - build-test         
+
+
