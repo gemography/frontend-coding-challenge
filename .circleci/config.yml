@@ -1,35 +1,35 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:lts
+  working_directory: ~/repo
+
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.0
-
-executors:
-  node-exe:
-   docker:
-    - image: circleci/node:12  
+  node: circleci/node@5.0.0 
 
 commands:
   build:
    steps:
-    - checkout
     - node/install-packages
-    - run: node --version 
-    - node/run:
-          npm-run: build      
+    - run: node --version
+    - run:
+        name: "Build"
+        command: npm run build    
 
 jobs:
  build-test:
-   executor: node-exe
-   environment:
-      CI: "false"
+   <<: *defaults
+   working_directory: ~/repo
    steps:
+    - checkout
     - build
-    - node/test
+    - run:
+          name: "Run tests"
+          command: npm run test
 
 workflows:
   version: 2.1
   test_and_release:
    jobs:
-    - build-test         
-
-
+    - build-test
