@@ -11,7 +11,9 @@ orbs:
 commands:
   build:
    steps:
-    - node/install-packages
+    - node/install-packages:
+          app-dir: "~/repo"
+          cache-path: "~/repo/node_modules"
     - run: node --version
     - run:
         name: "Build"
