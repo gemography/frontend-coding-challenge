@@ -10,8 +10,8 @@ jobs:
       tag: 14.15.1 
    steps:
     - checkout
-    - node/install-packages:
-        pkg-manager: npm
+    - run: node --version
+    - node/install
     - run:
           name: "Run tests"
           command: npm test
