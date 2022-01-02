@@ -13,6 +13,7 @@ jobs:
     - run: node --version
     - node/install-packages:
         cache-path: ~/project/node_modules
+        override-ci-command: npm install
     - run: sudo npm install -g npm@latest    
     - run:
           name: "Run tests"
