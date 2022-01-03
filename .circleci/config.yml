@@ -12,6 +12,7 @@ jobs:
     - checkout
     - run: node --version
     - node/install-packages:
+        app-dir: ~/project
         cache-path: ~/project/node_modules
         override-ci-command: npm install
     - run: sudo npm install -g npm@latest    
