@@ -11,7 +11,9 @@ jobs:
    steps:
     - checkout
     - run: node --version
-    - node/install-packages
+    - node/install-packages:
+        app-dir: ~/project
+        cache-path: ~/project/node_modules
     - run: sudo npm install -g npm@latest    
     - run:
           name: "Run tests"
