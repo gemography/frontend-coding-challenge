@@ -1,35 +1,26 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.0
-
-executors:
-  node-exe:
-   docker:
-    - image: circleci/node:12  
-
-commands:
-  build:
-   steps:
-    - checkout
-    - node/install-packages
-    - run: node --version 
-    - node/run:
-          npm-run: build      
+  node: circleci/node@5.0.0 
 
 jobs:
  build-test:
-   executor: node-exe
-   environment:
-      CI: "false"
+   executor:
+      name: node/default
+      tag: 14.15.1 
    steps:
-    - build
-    - node/test
+    - checkout
+    - run: node --version
+    - node/install-packages:
+        app-dir: ~/project
+        override-ci-command: npm install
+    - run: sudo npm install -g npm@latest    
+    - run:
+          name: "Run tests"
+          command: npm test
 
 workflows:
   version: 2.1
   test_and_release:
    jobs:
-    - build-test         
-
-
+    - build-test
