@@ -1,0 +1,25 @@
+:root {
+  --lightGrey: #f2f3f4;
+  /* COLORS */
+  --white: #ffffff;
+  --black: #000000;
+  --accentColor: #201d29;
+  --borderColor: #d6d6d6;
+  --copyColor: #333333;
+  --copyDarkColor: var(--black);
+  --copyLightColor: var(--white);
+  --primaryColor: #006d77;
+  --primaryLightColor: #faf5ff;
+  --primaryMediumColor: #e7e2f8;
+
+  --baseHorzSpacing: 2rem;
+  --baseVertSpacing: 3rem;
+
+  --smallSpacing: 1rem;
+
+  --baseBorder: 1px solid var(--borderColor);
+}
+
+body {
+  margin: 0;
+}

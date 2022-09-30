@@ -1,0 +1,8 @@
+.header {
+  background-color: var(--primaryColor);
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  padding: var(--smallSpacing) var(--baseHorzSpacing);
+}
