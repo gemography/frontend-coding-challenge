@@ -1,0 +1,42 @@
+.card {
+  background-color: var(--white);
+  padding: 1rem;
+  border: var(--baseBorder);
+  border-radius: 0.25rem;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.cardbody {
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.cardImage {
+  display: block;
+  max-height: 150px;
+  height: 100%;
+}
+
+.cardHeader {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.rating {
+  border: var(--baseBorder);
+  background-color: var(--starsColor);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.5rem;
+}
+.issues {
+  margin-left: 1rem;
+  background-color: var(--red);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.5rem;
+  border: var(--baseBorder);
+}
