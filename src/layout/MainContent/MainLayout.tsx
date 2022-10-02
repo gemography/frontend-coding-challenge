@@ -2,7 +2,10 @@ import React from 'react';
 import Content from '../Content';
 import Header from '../Header';
 
-const MainLayout = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+const MainLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
