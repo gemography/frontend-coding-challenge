@@ -3,12 +3,13 @@ import { CancellablePromise } from 'mobx/dist/api/flow';
 import { IRootStore } from '../root/store';
 import { GithubRepoRepository } from './repository';
 
-import { GithubRepoInputOptions, GithubRepoResponseType } from './types';
+import { GithubRepoInputOptions, GithubRepoType } from './types';
 
 export interface IGithubRepoStore {
-  repos: GithubRepoResponseType | null;
+  repos: GithubRepoType[] | null;
   load: (options: GithubRepoInputOptions) => void;
   loading: boolean;
+  totalCount: number;
   error: Error | null | unknown;
   clearError: () => void;
   clear: () => void;
@@ -27,10 +28,13 @@ export function GithubRepoStore(rootStore: IRootStore) {
 
   const _load = flow(async function* (options: GithubRepoInputOptions) {
     store.loading = true;
-    store.repos = null;
     try {
       const repos = yield _repository.load(options);
-      store.repos = repos;
+      store.repos = !store.repos
+        ? repos.items
+        : [...(store.repos as GithubRepoType[]), ...repos.items];
+
+      store.totalCount = repos.total_count;
     } catch (error) {
       store.error = error;
     }
@@ -44,6 +48,7 @@ export function GithubRepoStore(rootStore: IRootStore) {
       _currentLoad = _load(options);
     }),
     loading: false,
+    totalCount: 0,
     error: null,
     clearError: action<IGithubRepoStore['clearError']>(() => {
       store.error = null;
